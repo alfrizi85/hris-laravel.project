@@ -11,7 +11,7 @@
         <p class='text-sm text-gray-500'>Daftar seluruh pegawai perusahaan</p>
     </div>
 
-    <a href='#'
+    <a href="{{ route('employees.create')  }}"
        class='px-4 py-2 rounded-xl bg-[#6B2147] text-white text-sm font-medium hover:opacity-90 transition'>
         + Tambah Pegawai
     </a>

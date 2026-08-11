@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Employee;
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -11,6 +12,8 @@ class EmployeeSeeder extends Seeder
 {
     public function run(): void
     {
+        Employee::query()->withTrashed()->forceDelete();
+
         $employees = [
 
         // ===========================
@@ -549,16 +552,24 @@ class EmployeeSeeder extends Seeder
     ];
 
     foreach ($employees as $employee) {
+        $position = Position::query()->find($employee['position_id']);
 
-     $user = User::create([
-        'name' => $employee['nama_lengkap'],
-        'email' => $employee['email_kantor'],
-        'password' => Hash::make('password'),
-    ]);
+        $employee['division_id'] = $position?->division_id ?? $employee['division_id'];
 
-    $employee['user_id'] = $user->id;
-    
-        Employee::create($employee);
+        $user = User::query()->firstOrCreate(
+            ['email' => $employee['email_kantor']],
+            [
+                'name' => $employee['nama_lengkap'],
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        $employee['user_id'] = $user->id;
+
+        Employee::query()->firstOrCreate(
+            ['nik' => $employee['nik']],
+            $employee
+        );
     }
     }
 }

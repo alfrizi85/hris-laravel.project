@@ -2,229 +2,172 @@
 
 namespace Database\Seeders;
 
+use App\Models\Division;
 use App\Models\Position;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PositionSeeder extends Seeder
 {
     public function run(): void
     {
-        
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        Position::query()->delete();
+        DB::statement('ALTER TABLE positions AUTO_INCREMENT = 1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $positions = [
-
-            // ===========================
-            // IT
-            // ===========================
             [
-                'division_id' => 1,
+                'division_kode' => 'IT',
                 'kode_jabatan' => 'IT001',
                 'nama_jabatan' => 'IT Manager',
-                'gaji_pokok' => 12000000,
-                'tunjangan_jabatan' => 3000000,
             ],
             [
-                'division_id' => 1,
+                'division_kode' => 'IT',
                 'kode_jabatan' => 'IT002',
                 'nama_jabatan' => 'Backend Developer',
-                'gaji_pokok' => 8500000,
-                'tunjangan_jabatan' => 1500000,
             ],
             [
-                'division_id' => 1,
+                'division_kode' => 'IT',
                 'kode_jabatan' => 'IT003',
                 'nama_jabatan' => 'Frontend Developer',
-                'gaji_pokok' => 8000000,
-                'tunjangan_jabatan' => 1500000,
             ],
             [
-                'division_id' => 1,
+                'division_kode' => 'IT',
                 'kode_jabatan' => 'IT004',
                 'nama_jabatan' => 'IT Support',
-                'gaji_pokok' => 6000000,
-                'tunjangan_jabatan' => 1000000,
             ],
-
-            // ===========================
-            // DIGITAL CREATIVE
-            // ===========================
             [
-                'division_id' => 5,
+                'division_kode' => 'DC',
                 'kode_jabatan' => 'DC001',
-                'nama_jabatan' => 'Creative Manager',
-                'gaji_pokok' => 11000000,
-                'tunjangan_jabatan' => 2500000,
+                'nama_jabatan' => 'Design',
             ],
             [
-                'division_id' => 5,
+                'division_kode' => 'DC',
                 'kode_jabatan' => 'DC002',
-                'nama_jabatan' => 'Senior Graphic Designer',
-                'gaji_pokok' => 8000000,
-                'tunjangan_jabatan' => 1500000,
+                'nama_jabatan' => 'Motion Designer',
             ],
             [
-                'division_id' => 5,
+                'division_kode' => 'DC',
                 'kode_jabatan' => 'DC003',
-                'nama_jabatan' => 'Graphic Designer',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 1000000,
-            ],
-            [
-                'division_id' => 5,
-                'kode_jabatan' => 'DC004',
-                'nama_jabatan' => 'UI/UX Designer',
-                'gaji_pokok' => 7500000,
-                'tunjangan_jabatan' => 1200000,
-            ],
-            [
-                'division_id' => 5,
-                'kode_jabatan' => 'DC005',
-                'nama_jabatan' => 'Motion Graphic Designer',
-                'gaji_pokok' => 7000000,
-                'tunjangan_jabatan' => 1000000,
-            ],
-            [
-                'division_id' => 5,
-                'kode_jabatan' => 'DC006',
                 'nama_jabatan' => 'Video Editor',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 1000000,
             ],
             [
-                'division_id' => 5,
+                'division_kode' => 'DC',
+                'kode_jabatan' => 'DC004',
+                'nama_jabatan' => 'Photography',
+            ],
+            [
+                'division_kode' => 'DC',
+                'kode_jabatan' => 'DC005',
+                'nama_jabatan' => 'UI/UX Designer',
+            ],
+            [
+                'division_kode' => 'DC',
+                'kode_jabatan' => 'DC006',
+                'nama_jabatan' => 'Creative Writer',
+            ],
+            [
+                'division_kode' => 'DC',
                 'kode_jabatan' => 'DC007',
-                'nama_jabatan' => 'Photographer',
-                'gaji_pokok' => 6000000,
-                'tunjangan_jabatan' => 800000,
+                'nama_jabatan' => 'Senior Designer',
             ],
             [
-                'division_id' => 5,
+                'division_kode' => 'DC',
                 'kode_jabatan' => 'DC008',
-                'nama_jabatan' => 'Content Creator',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 900000,
+                'nama_jabatan' => 'Social Media Specialist',
             ],
             [
-                'division_id' => 5,
+                'division_kode' => 'DC',
                 'kode_jabatan' => 'DC009',
-                'nama_jabatan' => 'Social Media Designer',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 900000,
+                'nama_jabatan' => 'Creative Strategist',
             ],
-
-            // ===========================
-            // MARKETING
-            // ===========================
             [
-                'division_id' => 4,
+                'division_kode' => 'MKT',
                 'kode_jabatan' => 'MKT001',
                 'nama_jabatan' => 'Marketing Manager',
-                'gaji_pokok' => 11000000,
-                'tunjangan_jabatan' => 2500000,
             ],
             [
-                'division_id' => 4,
+                'division_kode' => 'MKT',
                 'kode_jabatan' => 'MKT002',
                 'nama_jabatan' => 'Digital Marketing Specialist',
-                'gaji_pokok' => 7500000,
-                'tunjangan_jabatan' => 1200000,
             ],
             [
-                'division_id' => 4,
+                'division_kode' => 'MKT',
                 'kode_jabatan' => 'MKT003',
                 'nama_jabatan' => 'SEO Specialist',
-                'gaji_pokok' => 7000000,
-                'tunjangan_jabatan' => 1000000,
             ],
             [
-                'division_id' => 4,
+                'division_kode' => 'MKT',
                 'kode_jabatan' => 'MKT004',
                 'nama_jabatan' => 'Ads Specialist',
-                'gaji_pokok' => 7500000,
-                'tunjangan_jabatan' => 1200000,
             ],
             [
-                'division_id' => 4,
+                'division_kode' => 'MKT',
                 'kode_jabatan' => 'MKT005',
                 'nama_jabatan' => 'Content Marketing',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 900000,
             ],
             [
-                'division_id' => 4,
+                'division_kode' => 'MKT',
                 'kode_jabatan' => 'MKT006',
-                'nama_jabatan' => 'Partnership Officer',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 900000,
+                'nama_jabatan' => 'Content Creator',
             ],
-
-            // ===========================
-            // HR
-            // ===========================
             [
-                'division_id' => 2,
+                'division_kode' => 'HR',
                 'kode_jabatan' => 'HR001',
-                'nama_jabatan' => 'HR Manager',
-                'gaji_pokok' => 10000000,
-                'tunjangan_jabatan' => 2000000,
-            ],
-            [
-                'division_id' => 2,
-                'kode_jabatan' => 'HR002',
                 'nama_jabatan' => 'HR Staff',
-                'gaji_pokok' => 6500000,
-                'tunjangan_jabatan' => 900000,
             ],
-
-            // ===========================
-            // FINANCE
-            // ===========================
             [
-                'division_id' => 3,
+                'division_kode' => 'HR',
+                'kode_jabatan' => 'HR004',
+                'nama_jabatan' => 'HR Manager',
+            ],
+            [
+                'division_kode' => 'FIN',
                 'kode_jabatan' => 'FIN001',
-                'nama_jabatan' => 'Finance Manager',
-                'gaji_pokok' => 11000000,
-                'tunjangan_jabatan' => 2500000,
-            ],
-            [
-                'division_id' => 3,
-                'kode_jabatan' => 'FIN002',
-                'nama_jabatan' => 'Senior Accountant',
-                'gaji_pokok' => 8500000,
-                'tunjangan_jabatan' => 1500000,
-            ],
-            [
-                'division_id' => 3,
-                'kode_jabatan' => 'FIN003',
                 'nama_jabatan' => 'Accountant',
-                'gaji_pokok' => 7000000,
-                'tunjangan_jabatan' => 1000000,
             ],
             [
-                'division_id' => 3,
+                'division_kode' => 'FIN',
+                'kode_jabatan' => 'FIN002',
+                'nama_jabatan' => 'Finance Officer',
+            ],
+            [
+                'division_kode' => 'FIN',
+                'kode_jabatan' => 'FIN003',
+                'nama_jabatan' => 'Finance Manager',
+            ],
+            [
+                'division_kode' => 'FIN',
                 'kode_jabatan' => 'FIN004',
-                'nama_jabatan' => 'Payroll Officer',
-                'gaji_pokok' => 7000000,
-                'tunjangan_jabatan' => 1000000,
-            ],
-            [
-                'division_id' => 3,
-                'kode_jabatan' => 'FIN005',
                 'nama_jabatan' => 'Tax Officer',
-                'gaji_pokok' => 7500000,
-                'tunjangan_jabatan' => 1200000,
             ],
             [
-                'division_id' => 3,
+                'division_kode' => 'FIN',
+                'kode_jabatan' => 'FIN005',
+                'nama_jabatan' => 'Payroll Officer',
+            ],
+            [
+                'division_kode' => 'FIN',
                 'kode_jabatan' => 'FIN006',
                 'nama_jabatan' => 'Cashier',
-                'gaji_pokok' => 5500000,
-                'tunjangan_jabatan' => 700000,
             ],
         ];
 
-        foreach ($positions as $position) {
-            Position::create($position);
+        foreach ($positions as $positionData) {
+            $divisionId = Division::query()
+                ->where('kode_divisi', $positionData['division_kode'])
+                ->value('id');
+
+            Position::query()->firstOrCreate(
+                ['kode_jabatan' => $positionData['kode_jabatan']],
+                [
+                    'division_id' => $divisionId,
+                    'nama_jabatan' => $positionData['nama_jabatan'],
+                    'gaji_pokok' => 0,
+                    'tunjangan_jabatan' => 0,
+                ]
+            );
         }
     }
 }
