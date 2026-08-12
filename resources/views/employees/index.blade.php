@@ -18,12 +18,40 @@
 </div>
 
 @if(session('success'))
-    <div class='mb-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-green-700'>
+    <div class="mb-6 rounded-xl bg-green-100 border border-green-200 px-4 py-3 text-green-800">
         {{ session('success') }}
     </div>
 @endif
 
 <div class='overflow-hidden rounded-2xl bg-white shadow border border-gray-100'>
+    <form method="GET" action="{{ route('employees.index') }}" class="mb-6">
+    <div class="flex gap-3">
+        <input
+            type="text"
+            name="search"
+            value="{{ request('search') }}"
+            placeholder="Cari NIK, nama, atau email..."
+            class="flex-1 rounded-xl border border-gray-300 px-4 py-3 focus:border-[#7A1F5C] focus:ring-[#7A1F5C]"
+        >
+
+        <button
+            type="submit"
+            class="px-5 py-3 rounded-xl bg-[#7A1F5C] text-white font-medium hover:opacity-90 transition"
+        >
+            Cari
+        </button>
+
+        @if(request('search'))
+            <a
+                href="{{ route('employees.index') }}"
+                class="px-5 py-3 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition"
+            >
+                Reset
+            </a>
+        @endif
+    </div>
+</form>
+
     <div class='overflow-x-auto'>
         <table class='min-w-full divide-y divide-gray-200'>
             <thead class='bg-gray-50'>
@@ -34,6 +62,7 @@
                     <th class='px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500'>Divisi</th>
                     <th class='px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500'>Jabatan</th>
                     <th class='px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500'>No. HP</th>
+                    <th class='px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500'>Aksi</th>
                 </tr>
             </thead>
 
@@ -52,6 +81,17 @@
                             {{ $employee->position->nama_jabatan ?? '-' }}
                         </td>
                         <td class='px-6 py-4 text-sm text-gray-700'>{{ $employee->no_hp ?? '-' }}</td>
+                        <td class='px-6 py-4 text-right text-sm font-medium'>
+                            <a href="{{ route('employees.edit', $employee->id) }}"
+                               class='text-[#6B2147] hover:underline'>Edit</a>
+
+                            <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class='text-red-600 hover:underline ml-4'
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus pegawai ini?')">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
