@@ -46,7 +46,7 @@
     <!-- Master Data -->
     @foreach ([
     ['Pegawai', route('employees.index'), 'users', request()->routeIs('employees.*')],
-    ['Divisi', '#', 'building-2', request()->is('divisons*')],
+    ['Divisi', route('divisions.index'), 'building-2', request()->routeIs('divisions.*')],
     ['Jabatan', '#', 'briefcase', request()->is('positions*')],
 ] as [$label, $url, $icon, $active])
 
